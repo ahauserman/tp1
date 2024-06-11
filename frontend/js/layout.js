@@ -1,11 +1,17 @@
 // Define el componente navbar
+
+const logoSrc = window.BASE_URL + 'img/logo.png';
+const indexHref = window.BASE_URL + 'index.html';
+const teamsHref = window.BASE_URL + 'teams/index.html';
+const sedesHref = window.BASE_URL + 'stadiums/index.html';
+
 class CustomNavbar extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
         <nav class="navbar navbar-expand-lg bg-warning">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="./img/logo.png" alt="Logo" height="40" class="d-inline-block align-text-middle me-2">
+           <img src="${logoSrc}" alt="Logo" height="40" class="d-inline-block align-text-middle me-2">
             <span class="fw-bold">Copa América 2024</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -14,9 +20,9 @@ class CustomNavbar extends HTMLElement {
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="#">Inicio</a>
-                <a class="nav-link" href="#">Equipos</a>
-                <a class="nav-link" href="#">Sedes</a>
+                <a class="nav-link" aria-current="page" href="${indexHref}">Inicio</a>
+                <a class="nav-link" href="${teamsHref}">Equipos</a>
+                <a class="nav-link" href="${sedesHref}">Sedes</a>
             </div>
         </div>
     </div>
@@ -24,7 +30,6 @@ class CustomNavbar extends HTMLElement {
       `;
     }
 }
-
 class CustomFooter extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
