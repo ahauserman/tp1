@@ -11,99 +11,69 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-warning">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="./img/logo.png" alt="Logo" height="40" class="d-inline-block align-text-middle me-2">
-                <span class="fw-bold">Copa América 2024</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                    <a class="nav-link" href="#">Equipos</a>
-                    <a class="nav-link" href="#">Sedes</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <div class="countdown-container">
-        <div class="countdown-wrapper">
-          <h2 class="countdown-title">¡Faltan para el inicio de la Copa América 2024!</h2>
-          <div id="countdown" class="countdown">
-            <div id="days" class="time"></div>
-            <div id="hours" class="time"></div>
-            <div id="minutes" class="time"></div>
-            <div id="seconds" class="time"></div>
-          </div>
-        </div>
-      </div>
-
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="./img/copa america.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="./img/argentina campeon.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="./img/fixture copa america.png" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-        </button>
-    </div>
-
-    <div class="card text-center mt-4">
-        <div class="card-header">
-            Información destacada
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Equipos</h5>
-                            <p class="card-text">Encuentra toda la información de los equipos que participan en la Copa,
-                                ¡podrás ver y modificar sus jugadores!</p>
-                            <a href="#" class="btn btn-primary">Ver Equipos</a>
-                        </div>
+    <div class="overlay"></div>
+    <div class="content-wrapper">
+        <nav class="navbar navbar-expand-lg bg-warning">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="./img/logo.png" alt="Logo" height="40" class="d-inline-block align-text-middle me-2">
+                    <span class="fw-bold">Copa América 2024</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" aria-current="page" href="#">Inicio</a>
+                        <a class="nav-link" href="#">Equipos</a>
+                        <a class="nav-link" href="#">Sedes</a>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Sedes</h5>
-                            <p class="card-text">Encuentra toda la información de las sedes elegidas para esta Copa.</p>
-                            <a href="#" class="btn btn-primary">Ver Sedes</a>
+            </div>
+        </nav>
+        <div class="countdown-container">
+            <div class="countdown-wrapper text-center text-white">
+                <h2 class="countdown-title">¡Días faltantes para el inicio de la Copa América 2024!</h2>
+                <div id="countdown" class="countdown d-flex justify-content-center">
+                    <div id="days" class="time mx-2"></div>
+                    <div id="hours" class="time mx-2"></div>
+                    <div id="minutes" class="time mx-2"></div>
+                    <div id="seconds" class="time mx-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card text-center mb-4 mx-auto" style="max-width: 900px;">
+            <div class="card-header">
+                Información destacada
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6 mb-3 mb-sm-0 d-flex align-items-stretch">
+                        <div class="card h-100">
+                            <img src="./img/argentina campeon.jpg" class="card-img-top" alt="Equipos">
+                            <div class="card-body">
+                                <h5 class="card-title">Equipos</h5>
+                                <p class="card-text">Encuentra toda la información de los equipos que participan en la Copa,
+                                    ¡podrás ver y modificar sus jugadores!</p>
+                                <a href="#" class="btn btn-primary">Ver Equipos</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 d-flex align-items-stretch">
+                        <div class="card h-100">
+                            <img src="./img/mbstadium.jpg" class="card-img-top" alt="Sedes">
+                            <div class="card-body">
+                                <h5 class="card-title">Sedes</h5>
+                                <p class="card-text">Encuentra toda la información de las sedes elegidas para esta Copa.</p>
+                                <a href="#" class="btn btn-primary">Ver Sedes</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
     <!--Footer-->
 
     <footer class="bg-dark text-white text-center p-4">
@@ -172,10 +142,12 @@
         </div>
             
     </footer>
-    <script src="js/countdown.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    </div>  
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz4fnFO9gybBogGzHfhGHK/D97u+ElC2vqfzLUU5G8nlfp+0v0uXr2L5z6" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-q2GYIglPEtwG5E6FWZCtjG8ddGQ9A6AQXgQijyZflNADd0F1r84wRAc5pmE3uj2B" crossorigin="anonymous">
+    </script>
+    <script src="./js/countdown.js"></script>
 </body>
-
-</html>

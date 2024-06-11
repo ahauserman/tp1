@@ -1,7 +1,49 @@
-.carousel-item img {
-    height: 75vh;
-    object-fit: cover;
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    position: relative;
+    z-index: 1;
 }
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;/* Altura total menos la altura del footer */
+    width: 100%;
+    z-index: -1;
+    background: url('../img/copa america.jpeg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.25rem;
+    color: #000;
+}
+
 .countdown-container {
     text-align: center;
     margin-top: 50px;
@@ -9,7 +51,7 @@
   }
   
   .countdown-wrapper {
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -50,6 +92,18 @@
       transform: translateY(0);
     }
   }
+
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 /* Footer */
 .social-buttons {
     display: flex;
