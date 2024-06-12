@@ -1,16 +1,18 @@
-from flask import Flask, jsonify, request, send_from_directory
-from Models.Stadium import db 
+from flask import Flask, send_from_directory
+from Models.Stadium import db
+from Controllers.StadiumsController import stadium_bp
 
+app = Flask(__name__, static_folder='../frontend', static_url_path='/')
 
-
-app = Flask(__name__)
 port = 5000
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:qwerty@localhost:5432/copaamerica'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] =False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 @app.route('/')
-def hello_world():
+def serve_index():
     return send_from_directory('../frontend', 'index.html')
+
+app.register_blueprint(stadium_bp)
 
 if __name__ == '__main__':
     print('Starting server')
