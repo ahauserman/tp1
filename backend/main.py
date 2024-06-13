@@ -1,8 +1,10 @@
 from flask import Flask, send_from_directory
 from Models.Stadium import db
 from Controllers.StadiumsController import stadium_bp
+from flask_cors import CORS
 
 app = Flask(__name__, static_folder='../frontend', static_url_path='/')
+CORS(app)
 
 port = 5000
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:qwerty@localhost:5432/copaamerica'
