@@ -9,6 +9,6 @@ class Country(db.Model):
     country_name = db.Column(db.String(100), nullable=False)
     info = db.Column(db.String(1000), nullable=False)
     photo = db.Column(db.String(1000), nullable=False)
-    group = db.Column(db.String(1), nullables=False)
+    country_group = db.Column(db.String(1), nullables=False)
     titles = db.Column(db.Integer, nullable=False)
     dt = db.Column(db.String(30), nullable=False)
