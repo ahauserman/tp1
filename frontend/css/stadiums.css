@@ -1,0 +1,49 @@
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    transition: opacity 0.2s ease;
+}
+
+.card:hover .card-img-top {
+    opacity: 0.85;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem; /* Reduce spacing below title */
+}
+
+.card-text {
+    font-size: 1rem;
+    margin-bottom: 0.25rem; /* Reduce spacing below each paragraph */
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.flex-column {
+    flex-direction: column !important;
+}
+
+.flex-grow-1 {
+    flex-grow: 1 !important;
+}
+
+.min-vh-100 {
+    min-height: 100vh !important;
+}
+
+custom-footer {
+    margin-top: auto;
+}
