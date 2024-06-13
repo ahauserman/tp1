@@ -20,7 +20,7 @@ CREATE TABLE PLAYERS (
 
 -- Tabla SEDES
 CREATE TABLE STADIUMS (
-    id SERIAL PRIMARY KEY,
+    id_stadium SERIAL PRIMARY KEY,
     stadium_name VARCHAR(100) NOT NULL,
     city VARCHAR(100),
     photo VARCHAR(1000),
