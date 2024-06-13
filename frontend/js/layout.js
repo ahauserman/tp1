@@ -1,9 +1,9 @@
 // Define el componente navbar
 
 const logoSrc = window.BASE_URL + 'img/logo.png';
-const indexHref = window.BASE_URL + 'index.html';
-const teamsHref = window.BASE_URL + 'teams/index.html';
-const sedesHref = window.BASE_URL + 'stadiums/index.html';
+const indexHref = window.BASE_URL + '/';
+const teamsHref = window.BASE_URL + 'teams';
+const sedesHref = window.BASE_URL + 'stadiums';
 
 class CustomNavbar extends HTMLElement {
     connectedCallback() {
@@ -33,9 +33,9 @@ class CustomNavbar extends HTMLElement {
 class CustomFooter extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-       <footer class="bg-dark text-white text-center p-4">
+       <footer class="bg-dark text-white text-center p-3">
             <!-- Grid container -->
-            <div class="container p-4 pb-0">
+            <div class="container p-3 pb-0">
                 <!-- Section: Social media -->
                 <section class="mb-4">
 
