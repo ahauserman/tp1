@@ -24,7 +24,7 @@ def get_all_players():
         return jsonify({'message: ', error}), 500
     
 @player_bp.route('/<id_player>', methods=['GET'])
-def get_stadium_by_id(id_player):
+def get_player_by_id(id_player):
     try:
         player = Player.query.where(player.id_player == id_player).first()
         player_data = {
