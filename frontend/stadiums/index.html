@@ -22,7 +22,10 @@
                     <input type="text" id="searchInput" class="form-control" placeholder="Buscar estadio...">
                 </div>
             </div>
-            <div id="stadiumsContainer" class="row"></div>
+            <div id="loadingSpinner" style="display: none;">
+                <p class="loading">Cargando...</p>
+            </div>
+            <div class="row" id="stadiumsContainer"></div>
         </div>
 
         <custom-footer></custom-footer>
