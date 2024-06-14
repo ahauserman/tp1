@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-db = SQLAlchemy()
+from Models.base import db
 
 class Stadium(db.Model):
     __tablename__ = 'stadiums'
