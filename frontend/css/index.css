@@ -13,7 +13,6 @@ body::before {
   top: 0;
   left: 0;
   height: 100%;
-  /* Altura total menos la altura del footer */
   width: 100%;
   z-index: -1;
   background: url('../img/copa america.jpeg') no-repeat center center fixed;
@@ -86,13 +85,32 @@ body::before {
   }
 }
 
-.card img {
-  height: 200px;
-  object-fit: cover;
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card .card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover .card-img-top {
+  opacity: 0.85;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
 }
