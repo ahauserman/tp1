@@ -1,7 +1,5 @@
-import datetime
 from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from Models.base import db
 
 class Country(db.Model):
     __tablename__ = 'countries'
@@ -9,6 +7,6 @@ class Country(db.Model):
     country_name = db.Column(db.String(100), nullable=False)
     info = db.Column(db.String(1000), nullable=False)
     photo = db.Column(db.String(1000), nullable=False)
-    country_group = db.Column(db.String(1), nullables=False)
+    country_group = db.Column(db.String(1), nullable=False)
     titles = db.Column(db.Integer, nullable=False)
     dt = db.Column(db.String(30), nullable=False)
