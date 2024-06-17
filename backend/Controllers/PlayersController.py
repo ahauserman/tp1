@@ -3,43 +3,6 @@ from Models.Player import Player
 from Models.base import db
 
 player_bp = Blueprint('players', __name__, url_prefix='/players')
-
-@player_bp.route('/', methods=['GET'])
-def get_all_players():
-    try:
-        players = Player.query.all()
-        players_data = []
-        for player in players:
-            player_data = {
-                'id_player': player.id_player,
-                'player_name': player.player_name,
-                'team': player.team,
-                'photo': player.photo,
-                'country': player.country,
-                'position': player.position
-                }
-            players_data.append(player_data)
-        return jsonify({'Players': players_data})
-    except Exception as error:
-        print('Error:',error)
-        return jsonify({'message: ', error}), 500
-    
-@player_bp.route('/team/<id_country>', methods=['GET'])
-def get_player_by_id(id_country):
-    try:
-        player = Player.query.where(player.id_player == id_country).first()
-        player_data = {
-                'id_player': player.id_player,
-                'player_name': player.player_name,
-                'team': player.team,
-                'photo': player.photo,
-                'country': player.country,
-                'position': player.position
-        }
-        return jsonify({'Player': player_data})
-    except Exception as error:
-        print('Error:',error)
-        return jsonify({'message: ', error}), 50
     
 @player_bp.route('/create_player', methods=["POST"])
 def create_player():
