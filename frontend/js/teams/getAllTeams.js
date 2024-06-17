@@ -32,7 +32,7 @@ function renderTeams(teams) {
 
         const card = document.createElement("div");
         card.className = "col-md-4 mb-4";
-        card.setAttribute("href", `/getbyid?id=${teams[index].id_country}`);
+        card.setAttribute("href", `./team`); //?id=${team.id_country}
 
         card.innerHTML = `
             <div class="card h-100">
@@ -50,7 +50,8 @@ function renderTeams(teams) {
         teamsContainer.appendChild(card);
 
         card.addEventListener('click', () => {
-            window.location.href = `/${team.id_country}`;
+            window.location.href = `./team/`; //${team.id_country}
+            
         });
     }
 }
