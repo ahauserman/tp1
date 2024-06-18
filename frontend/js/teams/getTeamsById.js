@@ -23,7 +23,7 @@ let allPlayers = [];
 
 function parse_data(content) {
     console.log(content);
-
+    
     allPlayers = content.Players;
     renderPlayers(allPlayers);
 
@@ -43,10 +43,9 @@ function renderPlayers(players) {
 
 
         card.innerHTML = `
-x
                 <img class="card-img-top" id="photo" src="${player.photo}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">${player._name}</h5>
+                    <h5 class="card-title">${player.player_name}</h5>
                     <p class="card-text" id="team">Club: ${player.team}</p>
                     <p class="card-text" id="country">Pais: ${player.country}</p>
                     <p class="card-text" id="position">Posicion: ${player.position}</p>
@@ -104,7 +103,7 @@ function request_error(error) {
 
 showLoadingSpinner();
 
-const request = fetch("http://localhost:5000/players/${id}")
+const request = fetch("http://localhost:5000/players/")
     .then(response_received)
     .then(parse_data)
     .catch(request_error);
