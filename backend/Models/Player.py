@@ -9,3 +9,4 @@ class Player(db.Model):
     photo = db.Column(db.String(1000), nullable=False)
     country = db.Column(db.Integer, nullable=False)
     position = db.Column(db.String(20), nullable=False)
+    
