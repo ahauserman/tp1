@@ -23,11 +23,62 @@ let allPlayers = [];
 
 function parse_data(content) {
     console.log(content);
-    
-    allPlayers = content.Players;
+    team=content.Country;
+    allPlayers = content.Country.Players;
+
+    renderTeam(team);
     renderPlayers(allPlayers);
 
     hideLoadingSpinner();
+}
+
+function renderTeam(team){
+    const teamContainer = document.getElementById("teamContainer");
+    teamContainer.innerHTML = `
+    <div class="container row mt-5 mb-5" id="teamContainer">
+            <div class="col-sm-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                </svg>
+            </div>
+            <div class="col-lg-5">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img class="country-img"
+                            src="${team.photo}"
+                            width="50%">
+                    </div>
+                    <div class="col-lg-8">
+                        <h1 id="country_name">${team.country_name}</h1>
+                    </div>
+                </div>
+                <p id="info">${team.info}</p>
+                <div class="row">
+                    <div class="col-sm-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-table" viewBox="0 0 16 16">
+                            <path
+                                d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z" />
+                        </svg></div>
+                    <div class="col-md-11">
+                        <h5 class="mt-2 mb-2" id="group">Grupo: ${team.country_group}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-trophy" viewBox="0 0 16 16">
+                            <path
+                                d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935M3.504 1q.01.775.056 1.469c.13 2.028.457 3.546.87 4.667C5.294 9.48 6.484 10 7 10a.5.5 0 0 1 .5.5v2.61a1 1 0 0 1-.757.97l-1.426.356a.5.5 0 0 0-.179.085L4.5 15h7l-.638-.479a.5.5 0 0 0-.18-.085l-1.425-.356a1 1 0 0 1-.757-.97V10.5A.5.5 0 0 1 9 10c.516 0 1.706-.52 2.57-2.864.413-1.12.74-2.64.87-4.667q.045-.694.056-1.469z" />
+                        </svg></div>
+                    <div class="col-md-11">
+                        <h5 class="mt-2 mb-2" id="titles">Títulos: ${team.titles}</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        `
 }
 
 function renderPlayers(players) {
@@ -103,7 +154,7 @@ function request_error(error) {
 
 showLoadingSpinner();
 
-const request = fetch("http://localhost:5000/players/")
+const request = fetch(`http://localhost:5000/teams/${id}`)
     .then(response_received)
     .then(parse_data)
     .catch(request_error);
