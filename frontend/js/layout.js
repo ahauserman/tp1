@@ -1,6 +1,6 @@
 // Define el componente navbar
 
-const logoSrc = window.BASE_URL + 'img/logo.png';
+const logoSrc = window.BASE_URL + '../../img/logo.png';
 const indexHref = window.BASE_URL + '';
 const teamsHref = window.BASE_URL + 'teams';
 const sedesHref = window.BASE_URL + 'stadiums';

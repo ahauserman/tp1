@@ -39,10 +39,10 @@ function renderTeams(teams) {
                 <img src="${team.photo}" class="card-img-top" alt="${team.country_name}">
                 <div class="card-body">
                     <h5 class="card-title">${team.country_name}</h5>
-                    <p class="card-text mb-1"><strong>Director Técnico:</strong> ${team.dt}</p>
-                    <p class="card-text mb-1"><strong>Grupo:</strong> ${team.country_group}</p>
-                    <p class="card-text mb-1"><strong>Títulos:</strong> ${team.titles}</p>
-                    <p class="card-text text-justify"><strong>Información Adicional:</strong> ${team.info}</p>
+                    <p class="card-text mb-1"><strong>Coach:</strong> ${team.dt}</p>
+                    <p class="card-text mb-1"><strong>Group:</strong> ${team.country_group}</p>
+                    <p class="card-text mb-1"><strong>Titles:</strong> ${team.titles}</p>
+                    <p class="card-text text-justify"><strong>Aditional information:</strong> ${team.info}</p>
                 </div>
             </div>
         `;

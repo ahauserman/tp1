@@ -11,7 +11,7 @@ function showLoadingSpinner() {
 
 function hideLoadingSpinner() {
     const loadingSpinner = document.getElementById('loadingSpinner');
-    loadingSpinner.style.display = 'none';
+    loadingSpinner.style.display = "none";
 }
 
 function response_received(response) {
@@ -24,7 +24,7 @@ let allPlayers = [];
 function parse_data(content) {
     console.log(content);
     team=content.Country;
-    allPlayers = content.Country.Players;
+    allPlayers = content.Country.players;
 
     renderTeam(team);
     renderPlayers(allPlayers);
@@ -34,26 +34,28 @@ function parse_data(content) {
 
 function renderTeam(team){
     const teamContainer = document.getElementById("teamContainer");
-    teamContainer.innerHTML = `
+    const teamDiv = document.createElement("div");
+    teamDiv.innerHTML = `
     <div class="container row mt-5 mb-5" id="teamContainer">
-            <div class="col-sm-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+            
+            
+                <div class="row">
+                <div class="col-sm-1">
+                <a href="../"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
                     class="bi bi-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                         d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
-                </svg>
+                </svg></a>
             </div>
-            <div class="col-lg-5">
-                <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-lg-5">
                         <img class="country-img"
                             src="${team.photo}"
-                            width="50%">
+                            style="max-width: 100%">
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-6">
                         <h1 id="country_name">${team.country_name}</h1>
-                    </div>
-                </div>
+                    
+                
                 <p id="info">${team.info}</p>
                 <div class="row">
                     <div class="col-sm-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -75,10 +77,11 @@ function renderTeam(team){
                         <h5 class="mt-2 mb-2" id="titles">Títulos: ${team.titles}</h4>
                     </div>
                 </div>
-
+</div>
             </div>
         </div>
         `
+        teamContainer.appendChild(teamDiv)
 }
 
 function renderPlayers(players) {
@@ -89,30 +92,29 @@ function renderPlayers(players) {
         const player = players[index];
 
         const card = document.createElement("div");
-        card.className = "card";
+        card.className = "col-md-4 mb-4";
         card.style = "width: 18rem;";
 
 
         card.innerHTML = `
-                <img class="card-img-top" id="photo" src="${player.photo}" alt="Card image cap">
+            <div class="card h-100">
+                <img class="card-img-top" width="100%" id="photo" src="${player.photo}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">${player.player_name}</h5>
+                    <h5 class="card-title">${player.name}</h5>
                     <p class="card-text" id="team">Club: ${player.team}</p>
-                    <p class="card-text" id="country">Pais: ${player.country}</p>
-                    <p class="card-text" id="position">Posicion: ${player.position}</p>
+                    <p class="card-text" id="position">Position: ${player.position}</p>
                     <div class="row">
-                        <div class="col-lg-6">
-
+                        <div class="col-md-6">
                             <button type="button" class="btn btn-primary" id="editPlayer" href="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil" viewBox="0 0 16 16">
                                     <path
                                         d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
                                 </svg>
-                                Button
+                                Edit
                             </button>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <button type="button" class="btn btn-outline-danger" id="deletePlayer" href="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-trash" viewBox="0 0 16 16">
@@ -123,11 +125,11 @@ function renderPlayers(players) {
                                         d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z">
                                     </path>
                                 </svg>
-                                Button
+                                Delete
                             </button>
                         </div>
                     </div>
-
+ </div>
                 </div>
         `;
 
