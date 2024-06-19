@@ -21,8 +21,8 @@ function create_player(event) {
     const team = formData.get("team")
     const position = formData.get("position")
 
-    fetch("http://localhost:5000/players/create_player", {
-        method: "POST",
+    fetch("http://localhost:5000/players/update_player", {
+        method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
