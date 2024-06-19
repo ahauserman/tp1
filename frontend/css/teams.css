@@ -1,5 +1,5 @@
-.loading{
-    color: white;
+.loading {
+    color: black;
 }
 .text-justify {
     text-align: justify;
@@ -19,9 +19,9 @@
     display: inline-block;
     width: 50px;
     height: 50px;
-    border: 3px solid  #ffffff;
+    border: 3px solid black;
     border-radius: 50%;
-    border-top-color: #ffffff;
+    border-top-color: transparent;
     animation: spin 1s ease-in-out infinite;
 }
 
@@ -31,30 +31,26 @@
     }
 }
 
-.d-flex {
-    display: flex !important;
+.country-img {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
 }
 
-.flex-column {
-    flex-direction: column !important;
+.card {
+    height: 100%;
 }
 
-.flex-grow-1 {
-    flex-grow: 1 !important;
-}
-
-.min-vh-100 {
-    min-height: 100vh !important;
-}
-
-custom-footer {
+.custom-footer {
     margin-top: auto;
 }
 
-.field-title{
+.field-title {
     font-weight: bold;
 }
-
-.country-img{
-    border-image: round;
+/* Ajuste específico para el botón */
+#newPlayerButton {
+    padding: 5px 10px;
+    font-size: 14px;
 }
