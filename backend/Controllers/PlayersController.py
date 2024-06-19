@@ -17,7 +17,7 @@ def create_player():
         new_player = Player(player_name=new_player_name, team=new_team, photo=new_photo, country=new_country, position=new_position)
         db.session.add(new_player)
         db.session.commit()
-        return jsonify({'New player': 'Yes'})
+        return jsonify({'success': 'true'})
     except Exception as error:
         print('Error:', error)
         return jsonify({'message': str(error)}), 500

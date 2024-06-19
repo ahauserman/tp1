@@ -10,17 +10,6 @@ def get_all_teams():
         countries = Country.query.all()
         countries_data = []
         for country in countries:
-            players = Player.query.where(Player.country == country.id_country).all()
-            players_data = [
-                {
-                    'id': player.id_player,
-                    'player_name': player.player_name,
-                    'team': player.team,
-                    'photo': player.photo,
-                    'position': player.position
-                } for player in players
-            ]
-            
             country_data = {
                 'id_country': country.id_country,
                 'country_name': country.country_name,
@@ -28,8 +17,7 @@ def get_all_teams():
                 'photo': country.photo,
                 'country_group': country.country_group,
                 'titles': country.titles,
-                'dt': country.dt,
-                'players': players_data if players else []
+                'dt': country.dt
             }
             countries_data.append(country_data)
         
