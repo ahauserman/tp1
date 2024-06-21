@@ -44,7 +44,9 @@ def get_stadium_by_id(id_stadium):
             Match.score_away_team,
             Match.match_group,
             HomeCountry.country_name.label('home_team_name'),
-            AwayCountry.country_name.label('away_team_name')
+            AwayCountry.country_name.label('away_team_name'),
+            HomeCountry.photo.label('home_team_photo'),
+            AwayCountry.photo.label('away_team_photo')
         ).join(
             HomeCountry, Match.home_team_id == HomeCountry.id_country
         ).join(
@@ -70,7 +72,9 @@ def get_stadium_by_id(id_stadium):
                     'stadium_id': match.stadium_id,
                     'score_home_team': match.score_home_team,
                     'score_away_team': match.score_away_team,
-                    'match_group': match.match_group
+                    'match_group': match.match_group,
+                    'home_team_photo': match.home_team_photo,
+                    'away_team_photo': match.away_team_photo
                 } for match in matches
             ]
         }
