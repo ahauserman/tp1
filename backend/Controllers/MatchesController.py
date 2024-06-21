@@ -3,6 +3,7 @@ from Models.Match import Match
 from datetime import datetime
 from sqlalchemy.orm import aliased
 from Models.Team import Country
+from Models.Stadium import Stadium
 from Models.base import db
 
 match_bp = Blueprint('matches', __name__, url_prefix='/matches')
@@ -13,6 +14,7 @@ def get_all_matches():
     try:
         HomeCountry = aliased(Country)
         AwayCountry = aliased(Country)
+        StadiumMatch = aliased(Stadium)
 
         matches = db.session.query(
             Match.id_match,
@@ -26,7 +28,8 @@ def get_all_matches():
             HomeCountry.country_name.label('home_team_name'),
             AwayCountry.country_name.label('away_team_name'),
             HomeCountry.photo.label('home_team_photo'),
-            AwayCountry.photo.label('away_team_photo')
+            AwayCountry.photo.label('away_team_photo'),
+            StadiumMatch.stadium_name.label('stadium_name')
         ).join(
             HomeCountry, Match.home_team_id == HomeCountry.id_country
         ).join(
@@ -49,7 +52,8 @@ def get_all_matches():
                 'score_away_team': match.score_away_team,
                 'match_group': match.match_group,
                 'home_team_photo': match.home_team_photo,
-                'away_team_photo': match.away_team_photo
+                'away_team_photo': match.away_team_photo,
+                'stadium_name': match.stadium_name
             }
             matches_data.append(match_data)
         return jsonify({'matches': matches_data})
@@ -62,6 +66,7 @@ def get_next_match():
     try:
         HomeCountry = aliased(Country)
         AwayCountry = aliased(Country)
+        StadiumMatch = aliased(Stadium)
 
         next_match = db.session.query(
             Match.id_match,
@@ -75,7 +80,9 @@ def get_next_match():
             HomeCountry.country_name.label('home_team_name'),
             AwayCountry.country_name.label('away_team_name'),
             HomeCountry.photo.label('home_team_photo'),
-            AwayCountry.photo.label('away_team_photo')
+            AwayCountry.photo.label('away_team_photo'),
+            AwayCountry.photo.label('away_team_photo'),
+            StadiumMatch.stadium_name.label('stadium_name')
         ).join(
             HomeCountry, Match.home_team_id == HomeCountry.id_country
         ).join(
@@ -99,7 +106,8 @@ def get_next_match():
                 'score_away_team': next_match.score_away_team,
                 'match_group': next_match.match_group,
                 'home_team_photo': next_match.home_team_photo,
-                'away_team_photo': next_match.away_team_photo
+                'away_team_photo': next_match.away_team_photo,
+                'stadium_name': next_match.stadium_name
             }
             return jsonify({'next_match': next_match_data})
         else:
