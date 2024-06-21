@@ -3,6 +3,7 @@ from Models.base import db
 from Controllers.StadiumsController import stadium_bp
 from Controllers.TeamsController import team_bp
 from Controllers.PlayersController import player_bp
+from Controllers.MatchesController import match_bp
 from flask_cors import CORS
 
 app = Flask(__name__, static_folder='../frontend', static_url_path='/')
@@ -19,6 +20,7 @@ def serve_index():
 app.register_blueprint(stadium_bp)
 app.register_blueprint(team_bp)
 app.register_blueprint(player_bp)
+app.register_blueprint(match_bp)
 
 if __name__ == '__main__':
     print('Starting server')
