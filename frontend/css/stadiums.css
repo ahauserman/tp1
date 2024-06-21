@@ -31,7 +31,53 @@
     }
 }
 
+.stadiums-img {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+}
 
+.card {
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 15px;
+}
+
+.card-text {
+    font-size: 0.875rem;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+    text-align: right;
+    padding: 10px;
+}
 .d-flex {
     display: flex !important;
 }

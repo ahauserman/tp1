@@ -32,6 +32,7 @@ function renderStadiums(stadiums) {
 
         const card = document.createElement("div");
         card.className = "col-md-4 mb-4";
+        card.setAttribute("href", `/stadium?id=${stadium.id_stadium}`);
 
         card.innerHTML = `
             <div class="card h-100">
@@ -47,7 +48,7 @@ function renderStadiums(stadiums) {
         stadiumsContainer.appendChild(card);
 
         card.addEventListener('click', () => {
-            window.location.href = `/stadiums/${stadium.id_stadium}`;
+            window.location.href = `stadium?id=${stadium.id_stadium}`;
         });
     }
 }
