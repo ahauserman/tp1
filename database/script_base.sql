@@ -234,6 +234,24 @@ COPY public.matches (id_match, home_team_id, away_team_id, match_datetime, stadi
 5	1	2	2024-06-29 21:00:00	2	\N	\N	A
 6	4	3	2024-06-29 21:00:00	13	\N	\N	A
 1	1	4	2024-06-20 21:00:00	1	2	0	A
+8	6	7	2024-06-21 19:00:00	14	\N	\N	B
+9	5	8	2024-06-21 22:00:00	9	\N	\N	B
+10	6	8	2024-06-26 19:00:00	12	\N	\N	B
+11	7	5	2024-06-26 22:00:00	10	\N	\N	B
+12	5	6	2024-06-30 21:00:00	8	\N	\N	B
+13	8	7	2024-06-30 21:00:00	5	\N	\N	B
+14	9	12	2024-06-23 19:00:00	3	\N	\N	C
+15	10	11	2024-06-23 22:00:00	2	\N	\N	C
+16	11	9	2024-06-27 19:00:00	1	\N	\N	C
+17	10	12	2024-06-27 22:00:00	7	\N	\N	C
+18	12	11	2024-07-01 22:00:00	13	\N	\N	C
+19	9	10	2024-07-01 22:00:00	4	\N	\N	C
+20	14	15	2024-06-24 19:00:00	9	\N	\N	D
+21	13	16	2024-06-24 22:00:00	10	\N	\N	D
+22	14	16	2024-06-28 19:00:00	8	\N	\N	D
+23	15	13	2024-06-28 22:00:00	12	\N	\N	D
+24	13	14	2024-06-02 22:00:00	14	\N	\N	D
+25	16	15	2024-06-02 22:00:00	5	\N	\N	D
 \.
 
 
@@ -289,7 +307,7 @@ SELECT pg_catalog.setval('public.countries_id_seq', 16, true);
 -- Name: matches_id_match_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.matches_id_match_seq', 6, true);
+SELECT pg_catalog.setval('public.matches_id_match_seq', 25, true);
 
 
 --
@@ -382,7 +400,7 @@ ALTER TABLE ONLY public.players
     ADD CONSTRAINT players_country_fkey FOREIGN KEY (country) REFERENCES public.countries(id_country);
 
 
--- Completed on 2024-06-21 15:07:52 -03
+-- Completed on 2024-06-21 16:17:59 -03
 
 --
 -- PostgreSQL database dump complete

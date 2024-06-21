@@ -34,9 +34,11 @@ def get_all_matches():
             HomeCountry, Match.home_team_id == HomeCountry.id_country
         ).join(
             AwayCountry, Match.away_team_id == AwayCountry.id_country
+        ).join(
+            StadiumMatch, Match.stadium_id == StadiumMatch.id_stadium
         ).order_by(
             Match.match_datetime
-        ).all()
+        ).distinct().all()
 
         matches_data = []
         for match in matches:
