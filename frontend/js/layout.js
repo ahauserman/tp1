@@ -1,7 +1,7 @@
 // Define el componente navbar
 
-const logoSrc = window.BASE_URL + 'img/logo.png';
-const indexHref = window.BASE_URL + '/';
+const logoSrc = window.BASE_URL + '../../img/logo.png';
+const indexHref = window.BASE_URL + '';
 const teamsHref = window.BASE_URL + 'teams';
 const sedesHref = window.BASE_URL + 'stadiums';
 
@@ -10,7 +10,7 @@ class CustomNavbar extends HTMLElement {
         this.innerHTML = `
         <nav class="navbar navbar-expand-lg bg-warning">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="${indexHref}">
            <img src="${logoSrc}" alt="Logo" height="40" class="d-inline-block align-text-middle me-2">
             <span class="fw-bold">Copa América 2024</span>
         </a>

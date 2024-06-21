@@ -16,5 +16,5 @@ function updateCountdown() {
 // Actualizar el contador cada segundo
 setInterval(updateCountdown, 1000);
 
-// Fecha de inicio de la Copa América 2024 (año, mes (0-11), día)
-const startDate = new Date(2024, 5, 20); // La fecha es el 20 de junio de 2024
+// Fecha de la final de la Copa América 2024 (año, mes (0-11), día)
+const startDate = new Date(2024, 6, 14); // La fecha es el 14 de julio de 2024
