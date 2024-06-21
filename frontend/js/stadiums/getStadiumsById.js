@@ -21,7 +21,7 @@ function renderStadium(stadium) {
         <div class="container row mt-5 mb-5" id="stadiumContainer">
             <div class="row">
                 <div class="col-sm-1">
-                    <a href="../"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
+                    <a href="../"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
                             class="bi bi-arrow-left" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                 d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
@@ -65,61 +65,77 @@ function fetchMatches(id) {
         .then(renderMatches)
         .catch(request_error);
 }
-
 function renderMatches(content) {
     const fixtureContainer = document.getElementById("fixtureContainer");
-    fixtureContainer.innerHTML = ''; // Limpiar el contenedor antes de renderizar
+    fixtureContainer.innerHTML = '';
 
-    const columnClass = 'col-md-4'; // Definir la clase de Bootstrap para columnas de tamaño medio
+    const matches = content.stadiums.matches;
 
-    // Añadir margen superior e inferior al contenedor de cards
-    fixtureContainer.style.marginTop = '20px';
-    fixtureContainer.style.marginBottom = '40px'; // Ajuste del margen inferior
+    const row = document.createElement("div");
+    row.classList.add("row");
 
-    content.stadiums.matches.forEach(match => {
-        const card = document.createElement("div");
-        card.classList.add("card", "mb-3", columnClass); // Agregar las clases de Bootstrap para cards y columnas
-        const fechaFormatted = convertUTCToLocalTime(match.match_datetime);
+    matches.forEach((match, index) => {
+        const column = document.createElement("div");
+        column.classList.add("col-md-6");
 
-        // Determinar el resultado mostrado
-        let resultado = `Resultado: ${match.score_home_team !== null ? match.score_home_team : '-'} - ${match.score_away_team !== null ? match.score_away_team : '-'}`;
+        const card = createMatchCard(match);
+        column.appendChild(card);
 
-        if (match.score_home_team === null && match.score_away_team === null) {
-            resultado = 'Resultado: -';
+        row.appendChild(column);
+        if (index % 2 === 0) {
+            column.style.marginRight = "auto";
+        } else {
+            column.style.marginLeft = "auto";
         }
-
-        card.innerHTML = `
-            <div class="card-header">
-                ${fechaFormatted}
-            </div>
-            <div class="card-body">
-                <div class="row mb-3">
-                    <div class="col-5 d-flex justify-content-center align-items-center">
-                        <img src="${match.home_team_photo}" class="img-fluid rounded shadow-lg" style="width: 100%; height: auto;" alt="${match.home_team_name}">
-                    </div>
-                    <div class="col-2 text-center">
-                    </div>
-                    <div class="col-5 d-flex justify-content-center align-items-center">
-                        <img src="${match.away_team_photo}" class="img-fluid rounded shadow-lg" style="width: 100%; height: auto;" alt="${match.away_team_name}">
-                    </div>
-                </div>
-                <h5 class="card-title text-center mt-3 mb-3">${match.home_team_name} vs ${match.away_team_name}</h5>
-                <p class="card-text">
-                    <strong>Grupo:</strong> ${match.match_group}<br>
-                    <strong>${resultado}</strong>
-                </p>
-            </div>
-        `;
-
-        fixtureContainer.appendChild(card);
     });
+    
+    fixtureContainer.appendChild(row);
 }
 
+function createMatchCard(match) {
+    const card = document.createElement("div");
+    card.classList.add("card", "mb-4");
+    card.style.width = "100%";
+    card.style.marginBottom = "20px";
 
-// Función para convertir la fecha y hora UTC a la hora local
+    const fechaFormatted = convertUTCToLocalTime(match.match_datetime);
+
+    let resultado = `${match.score_home_team !== null ? match.score_home_team : '-'} - ${match.score_away_team !== null ? match.score_away_team : '-'}`;
+
+    if (match.score_home_team === null && match.score_away_team === null) {
+        resultado = '-';
+    }
+
+    card.innerHTML = `
+        <div class="card-header text-center">
+            ${fechaFormatted}
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-5 d-flex justify-content-center align-items-center">
+                    <img src="${match.home_team_photo}" class="img-fluid rounded shadow-lg" alt="${match.home_team_name}">
+                </div>
+                <div class="col-2 text-center">
+                    VS
+                </div>
+                <div class="col-5 d-flex justify-content-center align-items-center">
+                    <img src="${match.away_team_photo}" class="img-fluid rounded shadow-lg" alt="${match.away_team_name}">
+                </div>
+            </div>
+            <h5 class="card-title text-center mt-3 mb-3">${match.home_team_name} vs ${match.away_team_name}</h5>
+            <p class="card-text">
+                <strong style="font-weight: bold;">Grupo:</strong> ${match.match_group}<br>
+                <strong>Resultado:</strong> ${resultado}
+            </p>
+        </div>
+    `;
+
+    return card;
+}
+
 function convertUTCToLocalTime(utcDateString) {
     const date = new Date(utcDateString);
-    const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000); // Ajuste de zona horaria
+    const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
 
     return localDate.toLocaleString('es-ES', {
         weekday: 'long',
