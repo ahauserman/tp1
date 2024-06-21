@@ -5,16 +5,6 @@ if (id === null) {
     window.location.href = "/";
 }
 
-function showLoadingSpinner() {
-    const loadingSpinner = document.getElementById('loadingSpinner');
-    loadingSpinner.style.display = 'block';
-}
-
-function hideLoadingSpinner() {
-    const loadingSpinner = document.getElementById('loadingSpinner');
-    loadingSpinner.style.display = "none";
-}
-
 function response_received(response) {
     return response.json();
 }
@@ -65,7 +55,6 @@ function renderStadium(stadium) {
             </div>
         </div>
     `;
-    showLoadingSpinner();
 }
 
 function fetchMatches(id) {
@@ -77,45 +66,74 @@ function fetchMatches(id) {
         .catch(request_error);
 }
 
-function renderMatches(matches) {
+function renderMatches(content) {
     const fixtureContainer = document.getElementById("fixtureContainer");
+    fixtureContainer.innerHTML = ''; // Limpiar el contenedor antes de renderizar
 
-    matches.forEach(match => {
+    const columnClass = 'col-md-4'; // Definir la clase de Bootstrap para columnas de tamaño medio
+
+    // Añadir margen superior e inferior al contenedor de cards
+    fixtureContainer.style.marginTop = '20px';
+    fixtureContainer.style.marginBottom = '40px'; // Ajuste del margen inferior
+
+    content.stadiums.matches.forEach(match => {
         const card = document.createElement("div");
-        card.classList.add("card", "mb-3");
+        card.classList.add("card", "mb-3", columnClass); // Agregar las clases de Bootstrap para cards y columnas
+        const fechaFormatted = convertUTCToLocalTime(match.match_datetime);
 
-        const fechaFormatted = new Date(match.fecha).toLocaleDateString('es-ES', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
+        // Determinar el resultado mostrado
+        let resultado = `Resultado: ${match.score_home_team !== null ? match.score_home_team : '-'} - ${match.score_away_team !== null ? match.score_away_team : '-'}`;
+
+        if (match.score_home_team === null && match.score_away_team === null) {
+            resultado = 'Resultado: -';
+        }
 
         card.innerHTML = `
             <div class="card-header">
                 ${fechaFormatted}
             </div>
             <div class="card-body">
-                <h5 class="card-title">${match.equipo_local.nombre} vs ${match.equipo_visitante.nombre}</h5>
+                <div class="row mb-3">
+                    <div class="col-5 d-flex justify-content-center align-items-center">
+                        <img src="${match.home_team_photo}" class="img-fluid rounded shadow-lg" style="width: 100%; height: auto;" alt="${match.home_team_name}">
+                    </div>
+                    <div class="col-2 text-center">
+                    </div>
+                    <div class="col-5 d-flex justify-content-center align-items-center">
+                        <img src="${match.away_team_photo}" class="img-fluid rounded shadow-lg" style="width: 100%; height: auto;" alt="${match.away_team_name}">
+                    </div>
+                </div>
+                <h5 class="card-title text-center mt-3 mb-3">${match.home_team_name} vs ${match.away_team_name}</h5>
                 <p class="card-text">
-                    Grupo: ${match.grupo}<br>
-                    Goles Local: ${match.goles_local !== null ? match.goles_local : '-'}<br>
-                    Goles Visitante: ${match.goles_visitante !== null ? match.goles_visitante : '-'}
+                    <strong>Grupo:</strong> ${match.match_group}<br>
+                    <strong>${resultado}</strong>
                 </p>
             </div>
         `;
 
         fixtureContainer.appendChild(card);
     });
+}
 
-    hideLoadingSpinner();
+
+// Función para convertir la fecha y hora UTC a la hora local
+function convertUTCToLocalTime(utcDateString) {
+    const date = new Date(utcDateString);
+    const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000); // Ajuste de zona horaria
+
+    return localDate.toLocaleString('es-ES', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric'
+    });
 }
 
 function request_error(error) {
     console.error("Error fetching data:", error);
-    hideLoadingSpinner();
 }
-
-showLoadingSpinner();
 
 const request = fetch(`http://localhost:5000/stadiums/${id}`)
     .then(response_received)
