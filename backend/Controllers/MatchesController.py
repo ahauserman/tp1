@@ -48,7 +48,7 @@ def get_all_matches():
                 'home_team_name': match.home_team_name,
                 'away_team_id': match.away_team_id,
                 'away_team_name': match.away_team_name,
-                'match_datetime': match.match_datetime.strftime('%Y-%m-%d %H:%M:%S'),
+                'match_datetime': match.match_datetime,
                 'stadium_id': match.stadium_id,
                 'score_home_team': match.score_home_team,
                 'score_away_team': match.score_away_team,
