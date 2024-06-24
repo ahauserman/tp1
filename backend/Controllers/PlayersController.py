@@ -22,20 +22,13 @@ def create_player():
         print('Error:', error)
         return jsonify({'message': str(error)}), 500
 
-@player_bp.route('/update_player/<id_player>', methods=["PUT"])
-def update_player(id_player):
+@player_bp.route('/delete_player/<id_player>', methods=["DELETE"])
+def delete_player(id_player):
     try:
-        data = request.json
-        player = Player.query.where(player.id_player == id_player).first()
-
-        player.player_name = data.get('player_name', player.player_name)
-        player.team = data.get('team', player.team)
-        player.photo = data.get('photo', player.photo)
-        player.country = data.get('country', player.country)
-        player.position = data.get('position', player.position)
-
+        player = Player.query.where(Player.id_player == id_player).first()
+        db.session.delete(player)
         db.session.commit()
-        return jsonify({'message': 'Player updated successfully'})
+        return jsonify({'success': 'true'})
     except Exception as error:
         print('Error:', error)
-        return jsonify({'message': str(error)}), 500 
+        return jsonify({'message': str(error)}), 500
