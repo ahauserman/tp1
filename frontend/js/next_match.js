@@ -15,6 +15,7 @@ function fetchMatch() {
         .then(renderMatch)
         .catch(request_error);
 }
+
 function renderMatch(content) {
     matchContainer = document.getElementById("matchContainer");
     matchContainer.innerHTML = '';
@@ -45,8 +46,8 @@ function createMatchCard(match) {
         <div class="card-header text-center">
             ${fechaFormatted}
         </div>
-        <div class="card-body ">
-            <div class="row mb-3">
+        <div class="card-body">
+            <div class="row mb-5">
                 <div class="col-5 d-flex justify-content-center align-items-center">
                     <img src="${match.home_team_photo}" class="img-fluid rounded shadow-lg" alt="${match.home_team_name}">
                 </div>

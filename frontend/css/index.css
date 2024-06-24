@@ -115,3 +115,22 @@ body::before {
   font-size: 1rem;
   margin-bottom: 0.25rem;
 }
+
+
+.next-match-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 2px solid #ffffff;
+  padding-bottom: 5px;
+}
+
+.no-hover-container {
+  pointer-events: none;
+}
+
+

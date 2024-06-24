@@ -3,7 +3,8 @@
 const logoSrc = window.BASE_URL + '../../img/logo.png';
 const indexHref = window.BASE_URL + '';
 const teamsHref = window.BASE_URL + 'teams';
-const sedesHref = window.BASE_URL + 'stadiums';
+const stadiumsHref = window.BASE_URL + 'stadiums';
+const matchesHref = window.BASE_URL + 'matches';
 
 class CustomNavbar extends HTMLElement {
     connectedCallback() {
@@ -22,7 +23,8 @@ class CustomNavbar extends HTMLElement {
             <div class="navbar-nav">
                 <a class="nav-link" aria-current="page" href="${indexHref}">Inicio</a>
                 <a class="nav-link" href="${teamsHref}">Equipos</a>
-                <a class="nav-link" href="${sedesHref}">Sedes</a>
+                <a class="nav-link" href="${stadiumsHref}">Sedes</a>
+                <a class="nav-link" href="${matchesHref}">Partidos</a>
             </div>
         </div>
     </div>
