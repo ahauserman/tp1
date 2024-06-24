@@ -102,7 +102,7 @@ def get_next_match():
                 'home_team_name': next_match.home_team_name,
                 'away_team_id': next_match.away_team_id,
                 'away_team_name': next_match.away_team_name,
-                'match_datetime': next_match.match_datetime.strftime('%Y-%m-%d %H:%M:%S'),
+                'match_datetime': next_match.match_datetime,
                 'stadium_id': next_match.stadium_id,
                 'score_home_team': next_match.score_home_team,
                 'score_away_team': next_match.score_away_team,

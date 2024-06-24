@@ -116,7 +116,6 @@ function createMatchCard(match) {
                     <img src="${match.home_team_photo}" class="img-fluid rounded shadow-lg" alt="${match.home_team_name}">
                 </div>
                 <div class="col-2 text-center">
-                    VS
                 </div>
                 <div class="col-5 d-flex justify-content-center align-items-center">
                     <img src="${match.away_team_photo}" class="img-fluid rounded shadow-lg" alt="${match.away_team_name}">
