@@ -11,7 +11,7 @@ function handle_response(data) {
     }
 }
 
-function create_player(event) {
+function update_player(event) {
     event.preventDefault()
 
     const formData = new FormData(event.target)

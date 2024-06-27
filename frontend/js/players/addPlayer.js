@@ -4,7 +4,7 @@ const id_country = urlParams.get('id');
 function handle_response(data) {
     console.log(data.success)
     if (data.success) {
-        window.location.href = `../?id=${id_country}` //?id=${id_country}
+        window.location.href = `../team/?id=${id_country}` //?id=${id_country}
     } else {
         alert("error")
         console.log(data)
@@ -20,6 +20,7 @@ function create_player(event) {
     const photo = formData.get("photo")
     const team = formData.get("team")
     const position = formData.get("position")
+    
 
     fetch("http://localhost:5000/players/create_player", {
         method: "POST",

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
-    const teamId = urlParams.get("id_country");
+    const id_country = urlParams.get("id_country");
 
     fetch(`http://localhost:5000/teams`)
         .then(response => response.json())
@@ -17,6 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         })
         .catch(error => {
-            console.error("Error fetching teams:", error);
+            console.error("Error fetching countries:", error);
         });
 });
