@@ -28,7 +28,7 @@ def get_player_by_id(id_player):
             'country_name': country_name.country_name
         }
 
-        return jsonify({'player': player_data})
+        return jsonify({'Player': player_data})
     except Exception as error:
         print('Error:', error)
         return jsonify({'message': str(error)}), 500

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
-    const id_country = urlParams.get("id_country");
+    const id_country = urlParams.get("id");
 
     fetch(`http://localhost:5000/teams`)
         .then(response => response.json())
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const option = document.createElement("option");
                 option.value = country.id;
                 option.textContent = country.country_name;
-                if (country.id == id_country) {
+                if (country.id_country == id_country) {
                     option.selected = true;
                 }
                 countrySelect.appendChild(option);
