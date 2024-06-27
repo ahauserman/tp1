@@ -1,8 +1,38 @@
 from flask import Blueprint, jsonify, request
 from Models.Player import Player
 from Models.base import db
+from Models.Team import Country
+from sqlalchemy.orm import aliased
 
 player_bp = Blueprint('players', __name__, url_prefix='/players')
+    
+@player_bp.route('/<id_player>', methods=['GET'])
+def get_player_by_id(id_player):
+    try:
+        player = Player.query.where(Player.id_player == id_player).first()
+        playerCountry = aliased(Country)
+        
+        country_name = db.session.query(
+            Country.country_name.label('country_name')
+        ).join(
+            playerCountry, player.country == playerCountry.id_country
+        ).first()
+        
+        player_data = {
+            'id_player': player.id_player,
+            'player_name': player.player_name,
+            'team': player.team,
+            'photo': player.photo,
+            'country': player.country,
+            'position': player.position,
+            'country_name': country_name.country_name
+        }
+
+        return jsonify({'player': player_data})
+    except Exception as error:
+        print('Error:', error)
+        return jsonify({'message': str(error)}), 500
+    
     
 @player_bp.route('/create_player', methods=["POST"])
 def create_player():
