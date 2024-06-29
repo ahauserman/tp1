@@ -82,6 +82,13 @@ function renderTeam(team) {
         </div>
         `
     teamContainer.appendChild(teamDiv)
+
+    //create new player button
+    const newButton = document.getElementById("newPlayerButton");
+        newButton.setAttribute("href", `addPlayer.html?id=${team.id_country}`);
+        newButton.addEventListener('click', () => {
+            window.location.href = `addPlayer.html?id=${team.id_country}`;
+        });
 }
 
 function renderPlayers(players) {
@@ -105,7 +112,7 @@ function renderPlayers(players) {
                     <p class="card-text" id="position">Position: ${player.position}</p>
                     <div class="row">
                         <div class="col-md-6">
-                            <button type="button" class="btn btn-primary" id="editPlayer" href="/editPlayer.html?id=${player.id}">
+                            <button type="button" class="btn btn-primary" id="editPlayer" href="./editPlayer.html?id=${player.id}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil" viewBox="0 0 16 16">
                                     <path
@@ -135,19 +142,13 @@ function renderPlayers(players) {
 
         playersContainer.appendChild(card);
 
-        const newButton = document.getElementById("newPlayerButton");
-        newButton.setAttribute("href", `addPlayer.html?id=${team.id_country}`);
-        newButton.addEventListener('click', () => {
-            window.location.href = `addPlayer.html?id=${team.id_country}`;
-        });
-
     }
 }
 
 function filterPlayers() {
     const searchInput = document.getElementById("searchInput").value.toLowerCase();
     const filteredPlayers = allPlayers.filter(player =>
-        player._name.toLowerCase().includes(searchInput)
+        player.name.toLowerCase().includes(searchInput)
     );
     renderPlayers(filteredPlayers);
 }
