@@ -20,6 +20,7 @@ function update_player(event) {
     const photo = formData.get("photo")
     const team = formData.get("team")
     const position = formData.get("position")
+    const country = formData.get("country")
 
     fetch("http://localhost:5000/players/update_player", {
         method: "PUT",
@@ -30,7 +31,7 @@ function update_player(event) {
             player_name: player_name,
             team: team,
             photo: photo,
-            country: id_country,
+            country: country,
             position: position
         })
     })

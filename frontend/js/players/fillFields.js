@@ -1,7 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 const player_id = params.get("id");
 
-if (id === null) {
+if (player_id === null) {
     window.location.href = "/";
 }
 
@@ -12,13 +12,30 @@ function response_received(response) {
 function parse_data(content) {
     const player = content.Player;
     fillFields(player);
+    console.log("hola")
 }
 
 function fillFields(player) {
-    player.player_data.forEach(field => {
-        const field_element=document.getElementById("${field}")
-        field_element.textContent = field.value;
-    });
+    console.log(player)
+    for (const field in player) {
+        console.log(field)
+        const field_element = document.getElementById(`${field}`)
+        if (field_element !== null) {
+            if (field_element.tagName === 'SELECT') {
+                //if the element is a SELECT, then it chooses the option with the needed id
+                const options = field_element.options;
+                for (let i = 0; i < options.length; i++) {
+                    if (options[i].value == player[field]) {
+                        field_element.selectedIndex = i;
+                        break;
+                    }
+                }
+            } else {
+                // if it's not a SELECT, then it just assigns the value
+                field_element.value = player[field];
+            }
+    }
+}
 }
 
 function request_error(error) {

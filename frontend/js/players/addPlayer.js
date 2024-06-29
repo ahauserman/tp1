@@ -1,6 +1,8 @@
 const urlParams = new URLSearchParams(window.location.search);
 const id_country = urlParams.get('id');
 
+setCurrentCountry();
+
 function handle_response(data) {
     console.log(data.success)
     if (data.success) {
@@ -9,6 +11,19 @@ function handle_response(data) {
         alert("error")
         console.log(data)
     }
+}
+
+function setCurrentCountry() {
+    const countrySelect = document.getElementById("country");
+    const options = countrySelect.options;
+
+    for (let i = 0; i < options.length; i++) {
+        const option = options[i];
+        if (option.value === id_country) {
+            option.seleted = true;
+        }
+    }
+
 }
 
 function create_player(event) {
