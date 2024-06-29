@@ -5,35 +5,31 @@ from Models.Team import Country
 from sqlalchemy.orm import aliased
 
 player_bp = Blueprint('players', __name__, url_prefix='/players')
-    
+
 @player_bp.route('/<id_player>', methods=['GET'])
 def get_player_by_id(id_player):
     try:
-        player = Player.query.where(Player.id_player == id_player).first()
-        playerCountry = aliased(Country)
-        
-        country_name = db.session.query(
-            Country.country_name.label('country_name')
-        ).join(
-            playerCountry, player.country == playerCountry.id_country
-        ).first()
-        
+        PlayerCountry = aliased(Country)
+        player = db.session.query(Player, PlayerCountry).join(
+            PlayerCountry, Player.country == PlayerCountry.id_country
+        ).filter(Player.id_player == id_player).first()
+
+        player_info, country_info = player
         player_data = {
-            'id_player': player.id_player,
-            'player_name': player.player_name,
-            'team': player.team,
-            'photo': player.photo,
-            'country': player.country,
-            'position': player.position,
-            'country_name': country_name.country_name
+            'id_player': player_info.id_player,
+            'player_name': player_info.player_name,
+            'photo': player_info.photo,
+            'position': player_info.position,
+            'team': player_info.team,
+            'country': player_info.country,
+            'country_name': country_info.country_name
         }
 
-        return jsonify({'Player': player_data})
+        return jsonify({'player': player_data})
     except Exception as error:
         print('Error:', error)
         return jsonify({'message': str(error)}), 500
-    
-    
+
 @player_bp.route('/create_player', methods=["POST"])
 def create_player():
     try:
@@ -43,8 +39,15 @@ def create_player():
         new_photo = data.get('photo')
         new_country = data.get('country')
         new_position = data.get('position')
-        
-        new_player = Player(player_name=new_player_name, team=new_team, photo=new_photo, country=new_country, position=new_position)
+
+        new_player = Player(
+            player_name=new_player_name, 
+            team=new_team, 
+            photo=new_photo, 
+            country=new_country, 
+            position=new_position
+        )
+
         db.session.add(new_player)
         db.session.commit()
         return jsonify({'success': 'true'})
@@ -56,7 +59,7 @@ def create_player():
 def update_player(id_player):
     try:
         data = request.json
-        player = Player.query.where(player.id_player == id_player).first()
+        player = Player.query.filter_by(id_player=id_player).first()
 
         player.player_name = data.get('player_name', player.player_name)
         player.team = data.get('team', player.team)
@@ -65,10 +68,10 @@ def update_player(id_player):
         player.position = data.get('position', player.position)
 
         db.session.commit()
-        return jsonify({'success': 'true'})
+        return jsonify({'message': 'Player updated successfully'})
     except Exception as error:
         print('Error:', error)
-        return jsonify({'message': str(error)}), 500 
+        return jsonify({'message': str(error)}), 500
 
 @player_bp.route('/delete_player/<id_player>', methods=["DELETE"])
 def delete_player(id_player):
