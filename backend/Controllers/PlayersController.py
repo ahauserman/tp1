@@ -65,7 +65,7 @@ def update_player(id_player):
         player.position = data.get('position', player.position)
 
         db.session.commit()
-        return jsonify({'message': 'Player updated successfully'})
+        return jsonify({'success': 'true'})
     except Exception as error:
         print('Error:', error)
         return jsonify({'message': str(error)}), 500 
