@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const countrySelect = document.getElementById("country");
             data.Countries.forEach(country => {
                 const option = document.createElement("option");
-                option.value = country.id;
+                option.value = country.id_country;
                 option.textContent = country.country_name;
                 if (country.id_country == id_country) {
                     option.selected = true;
