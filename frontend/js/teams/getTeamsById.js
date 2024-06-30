@@ -83,12 +83,12 @@ function renderTeam(team) {
         `
     teamContainer.appendChild(teamDiv)
 
-    //create new player button
+    //reference new player button
     const newButton = document.getElementById("newPlayerButton");
-        newButton.setAttribute("href", `addPlayer.html?id=${team.id_country}`);
-        newButton.addEventListener('click', () => {
-            window.location.href = `addPlayer.html?id=${team.id_country}`;
-        });
+    newButton.setAttribute("href", `addPlayer.html?id=${team.id_country}`);
+    newButton.addEventListener('click', () => {
+        window.location.href = `addPlayer.html?id=${team.id_country}`;
+    });
 }
 
 function renderPlayers(players) {
@@ -112,7 +112,7 @@ function renderPlayers(players) {
                     <p class="card-text" id="position">Position: ${player.position}</p>
                     <div class="row">
                         <div class="col-md-6">
-                            <button type="button" class="btn btn-primary" id="editPlayer" href="./editPlayer.html?id=${player.id}">
+                            <button type="button" class="btn btn-primary" id="edit" onclick="clickButtonByAction(${player.id}, 'edit')" href="./editPlayer.html?id=${player.id}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil" viewBox="0 0 16 16">
                                     <path
@@ -122,7 +122,7 @@ function renderPlayers(players) {
                             </button>
                         </div>
                         <div class="col-md-6">
-                            <button type="button" class="btn btn-outline-danger" id="deletePlayer" href="">
+                            <button type="button" class="btn btn-outline-danger" id="delete-${player.id}" data-toggle="modal" data-target="#deletePlayer-${player.id}" href="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-trash" viewBox="0 0 16 16">
                                     <path
@@ -138,6 +138,26 @@ function renderPlayers(players) {
                     </div>
  </div>
                 </div>
+            <!-- Modal -->
+<div class="modal fade" id="deletePlayer-${player.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" onclick="deletePlayer()" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
         `;
 
         playersContainer.appendChild(card);
@@ -162,6 +182,10 @@ function request_error(error) {
 }
 
 showLoadingSpinner();
+
+function clickButtonByAction(id_player, action) {
+    window.location.href = `${action}Player.html?id=${id_player}`;
+}
 
 const request = fetch(`http://localhost:5000/teams/${id}`)
     .then(response_received)

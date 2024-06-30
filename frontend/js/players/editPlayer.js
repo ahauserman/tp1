@@ -1,10 +1,10 @@
 const urlParams = new URLSearchParams(window.location.search);
-const id_country = urlParams.get('id');
+const player_id = urlParams.get('id');
 
 function handle_response(data) {
-    console.log(data.success)
+    console.log(data)
     if (data.success) {
-        window.location.href = `../?id=${id_country}` //?id=${id_country}
+        window.location.href = `../` //?id=${id_country}
     } else {
         alert("error")
         console.log(data)
@@ -22,7 +22,7 @@ function update_player(event) {
     const position = formData.get("position")
     const country = formData.get("country")
 
-    fetch("http://localhost:5000/players/update_player", {
+    fetch(`http://localhost:5000/players/update_player/${player_id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"

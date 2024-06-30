@@ -16,7 +16,7 @@
     <custom-navbar></custom-navbar>
     <div class="container my-5 bg-white p-4 shadow rounded">
         <h2 class="mb-4">Editar Jugador</h2>
-        <form id="editPlayerForm" onsubmit="edit_player(event)">
+        <form id="editPlayerForm" onsubmit="update_player(event)">
             <div class="mb-3">
                 <label for="player_name" class="form-label">Nombre del Jugador</label>
                 <input type="text" class="form-control" id="player_name" name="player_name" required>
@@ -38,7 +38,7 @@
                 <select class="form-select" id="country" name="country" required>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">Agregar Jugador</button>
+            <button type="submit" class="btn btn-primary">Actualizar Jugador</button>
         </form>
     </div>
 </div>

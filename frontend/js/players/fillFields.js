@@ -1,7 +1,7 @@
 const params = new URLSearchParams(window.location.search);
-const player_id = params.get("id");
+const id_player = params.get("id");
 
-if (player_id === null) {
+if (id_player === null) {
     window.location.href = "/";
 }
 
@@ -10,7 +10,7 @@ function response_received(response) {
 }
 
 function parse_data(content) {
-    const player = content.Player;
+    const player = content.player;
     fillFields(player);
     console.log("hola")
 }
@@ -25,7 +25,7 @@ function fillFields(player) {
                 //if the element is a SELECT, then it chooses the option with the needed id
                 const options = field_element.options;
                 for (let i = 0; i < options.length; i++) {
-                    if (options[i].value == player[field]) {
+                    if (options[i].value === player[field]) {
                         field_element.selectedIndex = i;
                         break;
                     }
@@ -42,7 +42,7 @@ function request_error(error) {
     console.error("Error fetching data:", error);
 }
 
-const request = fetch(`http://localhost:5000/players/${player_id}`)
+const request = fetch(`http://localhost:5000/players/${id_player}`)
     .then(response_received)
     .then(parse_data)
     .catch(request_error);
