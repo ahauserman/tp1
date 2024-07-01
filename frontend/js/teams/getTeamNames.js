@@ -1,7 +1,3 @@
-//document.addEventListener("DOMContentLoaded", function() {
-//const urlParams = new URLSearchParams(window.location.search);
-/*const id_country = urlParams.get("id");*/
-
 function getTeamNames(defaultCountryId) {
     fetch(`http://localhost:5000/teams`)
         .then(response => response.json())

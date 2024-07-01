@@ -48,7 +48,7 @@ function renderTeams(teams) {
         teamsContainer.appendChild(card);
 
         card.addEventListener('click', () => {
-            window.location.href = `team?id=${team.id_country}`; //
+            window.location.href = `team?id=${team.id_country}`; 
             
         });
     }

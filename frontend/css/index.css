@@ -129,8 +129,5 @@ body::before {
   padding-bottom: 5px;
 }
 
-.no-hover-container {
-  pointer-events: none;
-}
 
 
