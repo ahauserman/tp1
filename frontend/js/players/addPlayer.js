@@ -1,7 +1,12 @@
 const urlParams = new URLSearchParams(window.location.search);
 const id_country = urlParams.get('id');
 
-setCurrentCountry();
+
+
+getTeamNames();
+    setTimeout(10000)
+    console.log("ahors voy c aca")
+    setCurrentCountry();
 
 function handle_response(data) {
     console.log(data.success)
@@ -20,7 +25,8 @@ function setCurrentCountry() {
     for (let i = 0; i < options.length; i++) {
         const option = options[i];
         if (option.value === id_country) {
-            option.seleted = true;
+            console.log("a setear el current country")
+            option.selected = true;
         }
     }
 

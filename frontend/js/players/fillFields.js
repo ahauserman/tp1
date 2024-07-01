@@ -12,15 +12,17 @@ function response_received(response) {
 function parse_data(content) {
     const player = content.player;
     fillFields(player);
-    console.log("hola")
 }
 
 function fillFields(player) {
+    getTeamNames();
     console.log(player)
     for (const field in player) {
         console.log(field)
         const field_element = document.getElementById(`${field}`)
+        
         if (field_element !== null) {
+
             if (field_element.tagName === 'SELECT') {
                 //if the element is a SELECT, then it chooses the option with the needed id
                 const options = field_element.options;
@@ -34,6 +36,7 @@ function fillFields(player) {
                 // if it's not a SELECT, then it just assigns the value
                 field_element.value = player[field];
             }
+            
     }
 }
 }
