@@ -50,7 +50,7 @@ def create_player():
 
         db.session.add(new_player)
         db.session.commit()
-        return jsonify({'success': 'true'})
+        return jsonify({'success': 'true',  'country': new_country})
     except Exception as error:
         print('Error:', error)
         return jsonify({'message': str(error)}), 500
@@ -68,7 +68,7 @@ def update_player(id_player):
         player.position = data.get('position', player.position)
 
         db.session.commit()
-        return jsonify({'success': 'true'})
+        return jsonify({'success': 'true', 'country': player.country})
     except Exception as error:
         print('Error:', error)
         return jsonify({'message': str(error)}), 500
@@ -79,7 +79,7 @@ def delete_player(id_player):
         player = Player.query.where(Player.id_player == id_player).first()
         db.session.delete(player)
         db.session.commit()
-        return jsonify({'success': 'true'})
+        return jsonify({'success': 'true', 'country': player.country})
     except Exception as error:
         print('Error:', error)
         return jsonify({'message': str(error)}), 500

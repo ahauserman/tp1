@@ -9,14 +9,12 @@ function hideLoadingSpinner() {
 }
 
 function response_received(response) {
-    console.log(response)
     return response.json()
 }
 
 let allTeams = [];
 
 function parse_data(content) {
-    console.log(content);
 
     allTeams = content.Countries;
     renderTeams(allTeams);
@@ -78,5 +76,3 @@ const request = fetch("http://localhost:5000/teams")
     .then(response_received)
     .then(parse_data)
     .catch(request_error);
-
-console.log(request);

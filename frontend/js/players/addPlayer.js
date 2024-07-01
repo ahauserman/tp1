@@ -7,8 +7,9 @@ getTeamNames(id_country);
     setCurrentCountry();
 
 function handle_response(data) {
+    console.log(data)
     if (data.success) {
-        window.location.href = `../team/?id=${id_country}`
+        window.location.href = `../team/?id=${data.country}`
     } else {
         alert("error")
         console.log(data)

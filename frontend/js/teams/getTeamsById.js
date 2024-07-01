@@ -24,6 +24,15 @@ function parse_data(content) {
     team = content.Country;
     allPlayers = content.Country.players;
 
+    positionOrder = {
+        'Arquero': 1,
+        'Defensor': 2,
+        'Mediocampista': 3,
+        'Delantero': 4
+    }
+
+    allPlayers.sort((a, b) => positionOrder[a.position] - positionOrder[b.position]);
+
     renderTeam(team);
     renderPlayers(allPlayers);
 

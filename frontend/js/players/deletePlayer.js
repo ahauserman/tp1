@@ -5,7 +5,7 @@ function showDeleteModal(player_id) {
 function handle_response(data) {
     console.log(data)
     if (data.success) {
-        window.location.href = `../` //?id=${id_country}
+        window.location.href = `./?id=${data.country}`
     } else {
         alert("error")
         console.log(data)

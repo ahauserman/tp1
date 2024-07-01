@@ -16,9 +16,7 @@ function parse_data(content) {
 
 function fillFields(player) {
     getTeamNames(player.country);
-    console.log(player)
     for (const field in player) {
-        console.log(field)
         const field_element = document.getElementById(`${field}`)
         
         if (field_element !== null) {

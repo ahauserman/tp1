@@ -31,7 +31,13 @@
             </div>
             <div class="mb-3">
                 <label for="position" class="form-label">Posición</label>
-                <input type="text" class="form-control" id="position" name="position" required>
+                <select class="form-select" id="position" name="position" required>
+                    <option value="" disabled selected>--Seleccionar--</option>
+                    <option value="Arquero">Arquero</option>
+                    <option value="Defensor">Defensor</option>
+                    <option value="Mediocampista">Mediocampista</option>
+                    <option value="Delantero">Delantero</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="country" class="form-label">País</label>

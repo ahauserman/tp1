@@ -2,12 +2,11 @@ const urlParams = new URLSearchParams(window.location.search);
 const player_id = urlParams.get('id');
 
 function handle_response(data) {
-    console.log(data)
+    console.log(data.country)
     if (data.success) {
-        window.location.href = `../` 
+        window.location.href = `./?id=${data.country}` 
     } else {
         alert("error")
-        console.log(data)
     }
 }
 
