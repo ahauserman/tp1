@@ -3,15 +3,12 @@ const id_country = urlParams.get('id');
 
 
 
-getTeamNames();
-    setTimeout(10000)
-    console.log("ahors voy c aca")
+getTeamNames(id_country);
     setCurrentCountry();
 
 function handle_response(data) {
-    console.log(data.success)
     if (data.success) {
-        window.location.href = `../team/?id=${id_country}` //?id=${id_country}
+        window.location.href = `../team/?id=${id_country}`
     } else {
         alert("error")
         console.log(data)
@@ -21,11 +18,9 @@ function handle_response(data) {
 function setCurrentCountry() {
     const countrySelect = document.getElementById("country");
     const options = countrySelect.options;
-
     for (let i = 0; i < options.length; i++) {
         const option = options[i];
         if (option.value === id_country) {
-            console.log("a setear el current country")
             option.selected = true;
         }
     }

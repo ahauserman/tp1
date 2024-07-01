@@ -4,7 +4,7 @@ const player_id = urlParams.get('id');
 function handle_response(data) {
     console.log(data)
     if (data.success) {
-        window.location.href = `../` //?id=${id_country}
+        window.location.href = `../` 
     } else {
         alert("error")
         console.log(data)
