@@ -9,6 +9,7 @@ function handle_response(data) {
     } else {
         alert("error")
         console.log(data)
+        
     }
 }
 
