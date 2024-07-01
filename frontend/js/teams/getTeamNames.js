@@ -2,8 +2,7 @@
 //const urlParams = new URLSearchParams(window.location.search);
 /*const id_country = urlParams.get("id");*/
 
-function getTeamNames(){
-    
+function getTeamNames(defaultCountryId) {
     fetch(`http://localhost:5000/teams`)
         .then(response => response.json())
         .then(data => {
@@ -12,15 +11,12 @@ function getTeamNames(){
                 const option = document.createElement("option");
                 option.value = country.id_country;
                 option.textContent = country.country_name;
-                /*if (country.id_country == id_country) {
-                    option.selected = true;
-                }*/
                 countrySelect.appendChild(option);
             });
-            console.log("termine de cargar los paises")
+            countrySelect.value = defaultCountryId;
         })
         .catch(error => {
             console.error("Error fetching countries:", error);
         });
-    }
-//});
+}
+

@@ -15,14 +15,12 @@ function hideLoadingSpinner() {
 }
 
 function response_received(response) {
-    console.log(response)
     return response.json()
 }
 
 let allPlayers = [];
 
 function parse_data(content) {
-    console.log(content);
     team = content.Country;
     allPlayers = content.Country.players;
 
@@ -176,8 +174,6 @@ function filterPlayers() {
 document.getElementById("searchInput").addEventListener("input", filterPlayers);
 
 function request_error(error) {
-    console.log("ERROR");
-    console.log(error);
     hideLoadingSpinner();
 }
 
@@ -191,5 +187,3 @@ const request = fetch(`http://localhost:5000/teams/${id}`)
     .then(response_received)
     .then(parse_data)
     .catch(request_error);
-
-console.log(request);
