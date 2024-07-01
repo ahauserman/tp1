@@ -35,17 +35,9 @@ function renderStadium(stadium) {
                     <p id="info">${stadium.city}</p>
                     <div class="row">
                         <div class="col-sm-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-people" viewBox="0 0 16 16">
-                                <path
-                                    d="M5 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
-                                <path
-                                    d="M1 10c0-2.5 2-4 5-4s5 1.5 5 4v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2z" />
-                                <path
-                                    d="M11 6.757C10.158 6.265 8.744 6 8 6s-2.158.265-3 .757V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1.757z" />
-                                <path fill-rule="evenodd"
-                                    d="M3.12 13.693A1 1 0 0 1 3 13v-1.268C4.061 11.752 5.614 11 8 11s3.939.752 5 1.732V13a1 1 0 0 1-.12.693 7.544 7.544 0 0 1-.514 1.23A1 1 0 0 1 12 16H4a1 1 0 0 1-.366-.068 7.544 7.544 0 0 1-.514-1.23zM8 9c1.5 0 2.5 1 2.5 2H5c0-1 1-2 3-2z" />
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+  <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+</svg>
                         </div>
                         <div class="col-md-11">
                             <h5 class="mb-2" id="capacity">Capacidad: ${stadium.capacity}</h5>
