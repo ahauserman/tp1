@@ -15,14 +15,12 @@ function hideLoadingSpinner() {
 }
 
 function response_received(response) {
-    console.log(response)
     return response.json()
 }
 
 let allPlayers = [];
 
 function parse_data(content) {
-    console.log(content);
     team = content.Country;
     allPlayers = content.Country.players;
 
@@ -122,7 +120,7 @@ function renderPlayers(players) {
                             </button>
                         </div>
                         <div class="col-md-6">
-                            <button type="button" class="btn btn-outline-danger" id="delete-${player.id}" data-toggle="modal" data-target="#deletePlayer-${player.id}" href="">
+                            <button type="button" class="btn btn-outline-danger" onclick="showDeleteModal(${player.id})" id="delete-${player.id}" data-toggle="modal" data-target="#deletePlayer-${player.id}" href="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-trash" viewBox="0 0 16 16">
                                     <path
@@ -143,23 +141,19 @@ function renderPlayers(players) {
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">Delete player</h5>
       </div>
       <div class="modal-body">
-        ...
+        Are you sure you want to delete <strong>${player.name}</strong>?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" onclick="deletePlayer()" class="btn btn-primary">Save changes</button>
+        <button type="button" onclick="deletePlayer(${player.id})" class="btn btn-danger">Delete</button>
       </div>
     </div>
   </div>
 </div>
         `;
-
         playersContainer.appendChild(card);
 
     }
@@ -176,8 +170,6 @@ function filterPlayers() {
 document.getElementById("searchInput").addEventListener("input", filterPlayers);
 
 function request_error(error) {
-    console.log("ERROR");
-    console.log(error);
     hideLoadingSpinner();
 }
 
@@ -191,5 +183,3 @@ const request = fetch(`http://localhost:5000/teams/${id}`)
     .then(response_received)
     .then(parse_data)
     .catch(request_error);
-
-console.log(request);
